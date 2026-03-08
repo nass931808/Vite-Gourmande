@@ -12,36 +12,6 @@ Le site permet de:
 ## 🎓 Contexte du projet
 Ce projet a été réalisé dans le cadre d'un **ECF pour Studi**.
 
-## 🗂️ Schema du projet :
-
-Vite&Gourmande/
-├── config/
-│   ├── database.php      # Connexion a la base de donnees
-│   └── schema.sql        # Creation des tables SQL
-├── images/               # Images du site (menus, fond, etc.)
-├── styles/
-│   └── style.css         # Feuille de style principale
-└── pages/                # Pages de l'application
-	├── index.html
-	├── menus.php
-	├── menu-noel.php
-	├── menu-paque.php
-	├── menu-evenement.php
-	├── menu-classique.php
-	├── commande.php
-	├── mes-commandes.php
-	├── suivi-commande.php
-	├── donner-avis.php
-	├── login.php
-	├── register.php
-	├── logout.php
-	├── espace-utilisateur.php
-	├── espace-employe.php
-	├── espace-admin.php
-	├── contact.php
-	├── mentions-legales.php
-	└── _auth.php
-```
 
 ---
 
