@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite&Gourmande</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.css"> 
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-bordeaux fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/pages/index.html">Vite&Gourmande</a>
+            <button class="navbar-toggler" type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-lg-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="/pages/index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pages/menus.php">Menus</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pages/contact.php">Contact</a></li>
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <a class="btn btn-light btn-sm ms-lg-2" href="/pages/login.php">Connexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- HERO -->
+    <section class="hero d-flex align-items-center text-center text-white">
+        <div class="hero-content">
+            <h1 class="display-6">Traiteur depuis 25 ans à Bordeaux</h1>
+            <a href="/pages/menus.php" class="btn btn-primary btn-lg mt-3 w-75 w-md-auto">Voir les menus</a>
+        </div>
+    </section>
+
+
+    <!-- A PROPOS -->
+     <section class="container py-5">
+        <div class="row g-4 align-items-center">
+            <div class="col-12 col-md-6">
+                <img src="/images/nous.avif" class="img-fluid rounded shadow">
+            </div>
+        <div class="col-12 col-md-6 text-center text-md-start">
+            <h2>À propos de nous</h2>
+            <p>
+                Julie et José vous accompagnent depuis 25 ans pour vos événements :
+                mariages, fêtes et réceptions à Bordeaux.
+            </p>
+           </div>
+        </div> 
+     </section>
+
+
+     <!-- MENUS -->
+        <section id="menus" class="container py-5">
+                <h2 class="text-center mb-4">Nos Menus</h2>           
+                <!-- Filtres Mobile -->
+                 <div class="accordion mb-4 d-lg-none" id="filterAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" 
+                            type="button" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#collapseFilters">
+                            Filtres
+                            </button>
+                        </h2>
+                        <div id="collapseFilters" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <input type="number" class="form-control mb-2" placeholder="Prix max">
+                                <select class="form-select mb-2">
+                                    <option>Thème</option>
+                                    <option>Noël</option>
+                                    <option>Pâques</option>
+                                </select>
+                                <select class="form-select mb-2">
+                                    <option>Régime</option>
+                                    <option>Vegan</option>
+                                    <option>Classique</option>
+                                </select>    
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                <!-- Cartes -->
+                 <div class="row g-4">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100">
+                            <img src="/images/noel.avif" class="card-img-top" alt="Menu de Noël">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Menu de Noël</h5>
+                                <p class="card-text flex-grow-1">
+                                    Menu festif pour célébrer les fêtes de fin d'année.
+                                </p>
+                                <p class="fw-bold">6 pers min - 180 EUR</p>
+                                <a href="/pages/menu-noel.php" class="btn btn-primary w-100">Voir le menu</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100">
+                            <img src="/images/paque.avif" class="card-img-top" alt="Menu de Pâques">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Menu de Pâques</h5>
+                                <p class="card-text flex-grow-1">
+                                    Menu gourmand pour les repas de Pâques.
+                                </p>
+                                <p class="fw-bold">6 pers min - 170 EUR</p>
+                                <a href="/pages/menu-paque.php" class="btn btn-primary w-100">Voir le menu</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100">
+                            <img src="/images/evenement.avif" class="card-img-top" alt="Menu Événement">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Menu Événement</h5>
+                                <p class="card-text flex-grow-1">
+                                    Menu adapté aux célébrations privées et professionnelles.
+                                </p>
+                                <p class="fw-bold">10 pers min - 320 EUR</p>
+                                <a href="/pages/menu-evenement.php" class="btn btn-primary w-100">Voir le menu</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100">
+                            <img src="/images/classique.avif" class="card-img-top" alt="Menu Classique">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Menu Classique</h5>
+                                <p class="card-text flex-grow-1">
+                                    Menu classique disponible toute l'année.
+                                </p>
+                                <p class="fw-bold">4 pers min - 95 EUR</p>
+                                <a href="/pages/menu-classique.php" class="btn btn-primary w-100">Voir le menu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>   
+        <!-- FOOTER -->
+         <footer class="bg-bordeaux text-white text-center p-4">
+            <p class="mb-1">Horaires : Du lundi à dimanche de 11H à 23H</p>
+            <small>
+                <a href="/pages/mentions-legales.php" class="text-white text-decoration-none">Mentions légales</a> |
+                <a href="/pages/mentions-legales.php" class="text-white text-decoration-none">Politique de confidentialité</a>
+            </small>
+         </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>                             
+</body>
+</html>
