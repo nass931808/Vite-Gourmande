@@ -4,20 +4,20 @@ require_once __DIR__ . '/../config/database.php';
 $stmt = $pdo->query(
     'SELECT id, nom, description, nb_personnes_min, prix_minimum,
             CASE id
-                WHEN 1 THEN "Noël"
-                WHEN 2 THEN "Pâques"
-                WHEN 3 THEN "Événement"
-                ELSE "Classique"
+                WHEN 1 THEN ''Noël''
+                WHEN 2 THEN ''Pâques''
+                WHEN 3 THEN ''Événement''
+                ELSE ''Classique''
             END AS theme,
-            "Classique" AS regime,
+            ''Classique'' AS regime,
             CASE id
-                WHEN 1 THEN "/images/noel.avif"
-                WHEN 2 THEN "/images/paque.avif"
-                WHEN 3 THEN "/images/evenement.avif"
-                ELSE "/images/classique.avif"
+                WHEN 1 THEN ''/images/noel.avif''
+                WHEN 2 THEN ''/images/paque.avif''
+                WHEN 3 THEN ''/images/evenement.avif''
+                ELSE ''/images/classique.avif''
             END AS image_path
      FROM menus
-     WHERE actif = 1
+     WHERE actif = TRUE
      ORDER BY prix_minimum ASC'
 );
 $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);

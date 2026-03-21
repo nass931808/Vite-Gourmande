@@ -2,7 +2,6 @@
 
 .env
 .env.*
-vendor/
 Procfile
 composer.json
 composer.lock
