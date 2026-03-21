@@ -1,7 +1,7 @@
 # README - Vite&Gourmande (STUDI)
 
 ## 🍽️ Présentation du site
-Vite&Gourmande est un site web de restaurant/traiteur.
+J'ai créé Vite&Gourmande, un site web de restaurant/traiteur.
 
 Le site permet de:
 - 📋 Consulter les menus
@@ -10,30 +10,37 @@ Le site permet de:
 - 📦 Suivre une commande
 
 ## 🎓 Contexte du projet
-Ce projet a été réalisé dans le cadre d'un **ECF pour Studi**.
+J'ai réalisé ce projet dans le cadre d'un **ECF pour Studi**.
 
 
 ---
 
-Guide simple pour deployer l'application en local.
+Dans ce guide, j'ai expliqué simplement comment déployer l'application en local.
 
-## Prerequis
-- XAMPP installe
-- Apache et MySQL demarres
-- Projet dans `C:\xampp\htdocs\Vite&Gourmande`
+## Choix du schéma selon l'environnement
+- En local avec XAMPP/MySQL, j'ai utilisé `config/schema.sql`
+- Avec Supabase/PostgreSQL, j'ai utilisé `config/schema_supabase.sql`
+- Pour la connexion PHP, j'ai utilisé `config/database.php` avec la variable d'environnement `DB_DRIVER`
+	- `DB_DRIVER=mysql` pour MySQL
+	- `DB_DRIVER=pgsql` pour Supabase
 
-## Etapes
-1. Ouvrir phpMyAdmin: `http://localhost/phpmyadmin`
-2. Creer une base de donnees (ex: `vite_gourmande`)
-3. Importer `config/schema.sql`
-4. Verifier la connexion dans `config/database.php`
-5. Ouvrir l'application: `http://localhost/Vite&Gourmande/pages/index.html`
+## Prérequis
+- J'avais XAMPP installé
+- J'ai démarré Apache et MySQL
+- J'ai placé le projet dans `C:\xampp\htdocs\Vite&Gourmande`
 
-## Verification rapide
-- Accueil et menus accessibles
-- Inscription / connexion fonctionnelles
-- Commande et suivi de commande fonctionnels
+## Étapes
+1. J'ai ouvert phpMyAdmin: `http://localhost/phpmyadmin`
+2. J'ai créé une base de données (ex: `vite_gourmande`)
+3. J'ai importé `config/schema.sql`
+4. J'ai vérifié la connexion dans `config/database.php`
+5. J'ai ouvert l'application: `http://localhost/Vite&Gourmande/pages/index.html`
 
-## En cas de probleme
-- Verifier que MySQL est demarre
-- Verifier les identifiants de BDD dans `config/database.php`
+## Vérification rapide
+- J'ai vérifié que l'accueil et les menus étaient accessibles
+- J'ai vérifié que l'inscription et la connexion fonctionnaient
+- J'ai vérifié que la commande et le suivi de commande fonctionnaient
+
+
+
+
