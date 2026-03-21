@@ -44,7 +44,7 @@ $plats = $stmt->fetchAll();
     </nav>
 </header>
     
-    <section style="padding: 40px;text-align: center;">
+    <section class="menu-detail" style="padding: 40px;text-align: center;">
         <h2>Menu de Noël</h2>
 
         <h3>Entrée</h3>

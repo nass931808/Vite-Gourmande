@@ -113,6 +113,15 @@ h1, h2 {
     background: #5f3601;
 }
 
+.menu-detail ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.menu-detail li {
+    margin-bottom: 0.25rem;
+}
+
 @media (min-width: 768px) {
     .hero {
         height: 80vh;
