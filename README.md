@@ -12,6 +12,10 @@ Le site permet de:
 ## 🎓 Contexte du projet
 J'ai réalisé ce projet dans le cadre d'un **ECF pour Studi**.
 
+## 🌐 Site déployé
+Le site est en ligne à cette adresse:
+https://www.viteetgourmande1808.com/
+
 
 ---
 

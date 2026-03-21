@@ -37,8 +37,9 @@ CREATE TABLE IF NOT EXISTS utilisateurs (
     email VARCHAR(190) NOT NULL UNIQUE,
     adresse_postale VARCHAR(255) NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
-    role VARCHAR(20) NOT NULL DEFAULT 'utilisateur' CHECK (role IN ('utilisateur', 'employe', 'administrateur')),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    role VARCHAR(20) NOT NULL DEFAULT 'utilisateur',
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    CONSTRAINT chk_utilisateurs_role CHECK (role IN ('utilisateur', 'employe', 'administrateur'))
 );
 
 CREATE TABLE IF NOT EXISTS commandes (
@@ -60,8 +61,9 @@ CREATE TABLE IF NOT EXISTS commandes (
     remise NUMERIC(10,2) NOT NULL DEFAULT 0.00,
     frais_livraison NUMERIC(10,2) NOT NULL DEFAULT 0.00,
     prix_total NUMERIC(10,2) NOT NULL,
-    statut VARCHAR(30) NOT NULL DEFAULT 'en_attente' CHECK (statut IN ('en_attente', 'accepte', 'en_preparation', 'en_cours_de_livraison', 'livre', 'terminee', 'annulee')),
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    statut VARCHAR(30) NOT NULL DEFAULT 'en_attente',
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    CONSTRAINT chk_commandes_statut CHECK (statut IN ('en_attente', 'accepte', 'en_preparation', 'en_cours_de_livraison', 'livre', 'terminee', 'annulee'))
 );
 CREATE INDEX IF NOT EXISTS idx_commandes_utilisateur ON commandes(utilisateur_id);
 CREATE INDEX IF NOT EXISTS idx_commandes_menu ON commandes(menu_id);
@@ -83,9 +85,10 @@ CREATE TABLE IF NOT EXISTS avis (
     utilisateur_id BIGINT NOT NULL,
     note SMALLINT NOT NULL,
     commentaire TEXT NOT NULL,
-    statut VARCHAR(20) NOT NULL DEFAULT 'en_attente' CHECK (statut IN ('en_attente', 'valide', 'refuse')),
+    statut VARCHAR(20) NOT NULL DEFAULT 'en_attente',
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    CONSTRAINT uq_avis_commande UNIQUE (commande_id)
+    CONSTRAINT uq_avis_commande UNIQUE (commande_id),
+    CONSTRAINT chk_avis_statut CHECK (statut IN ('en_attente', 'valide', 'refuse'))
 );
 CREATE INDEX IF NOT EXISTS idx_avis_statut ON avis(statut);
 CREATE INDEX IF NOT EXISTS idx_avis_utilisateur ON avis(utilisateur_id);
