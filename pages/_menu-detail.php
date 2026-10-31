@@ -73,13 +73,18 @@ if (!$avis) {
     $avisDemo = [
         [
             'note' => 5,
-            'commentaire' => 'Présentation de démonstration : une composition soignée et adaptée aux repas de fête.',
-            'prenom' => 'Client démo',
+            'commentaire' => 'Présentation ECF : une composition soignée et adaptée aux repas de fête.',
+            'prenom' => 'Sophie Martin',
         ],
         [
             'note' => 4,
-            'commentaire' => 'Présentation de démonstration : des plats variés et une formule facile à organiser.',
-            'prenom' => 'Client démo',
+            'commentaire' => 'Présentation ECF : des plats variés et une formule facile à organiser.',
+            'prenom' => 'Thomas Bernard',
+        ],
+        [
+            'note' => 5,
+            'commentaire' => 'Présentation ECF : un menu gourmand et une organisation simple pour recevoir nos invités.',
+            'prenom' => 'Claire Dubois',
         ],
     ];
 }
