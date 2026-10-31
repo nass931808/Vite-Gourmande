@@ -13,33 +13,46 @@ if (!isLoggedIn()) {
 $message = '';
 $messageType = '';
 $commandeRecap = null;
+$databaseError = '';
 
 $menuId = isset($_GET['menu_id']) ? (int) $_GET['menu_id'] : 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $menuId = (int) ($_POST['menu_id'] ?? 0);
 }
 
-$menusStmt = $pdo->query('SELECT id, nom, nb_personnes_min, prix_minimum FROM menus WHERE actif = 1 ORDER BY nom');
-$menus = $menusStmt->fetchAll(PDO::FETCH_ASSOC);
+try {
+    $menusStmt = $pdo->query('SELECT id, nom, nb_personnes_min, prix_minimum FROM menus WHERE actif = 1 ORDER BY nom');
+    $menus = $menusStmt->fetchAll(PDO::FETCH_ASSOC);
 
-$menuSelectionne = null;
-foreach ($menus as $menu) {
-    if ((int) $menu['id'] === $menuId) {
-        $menuSelectionne = $menu;
-        break;
+    $menuSelectionne = null;
+    foreach ($menus as $menu) {
+        if ((int) $menu['id'] === $menuId) {
+            $menuSelectionne = $menu;
+            break;
+        }
     }
-}
 
-$userStmt = $pdo->prepare('SELECT nom, prenom, gsm, email, adresse_postale FROM utilisateurs WHERE id = :id LIMIT 1');
-$userStmt->execute(['id' => (int) $_SESSION['user_id']]);
-$userData = $userStmt->fetch(PDO::FETCH_ASSOC);
+    $userStmt = $pdo->prepare('SELECT nom, prenom, gsm, email, adresse_postale FROM utilisateurs WHERE id = :id LIMIT 1');
+    $userStmt->execute(['id' => (int) $_SESSION['user_id']]);
+    $userData = $userStmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $exception) {
+    error_log('Erreur de chargement de la commande : ' . $exception->getMessage());
+    $menus = [];
+    $menuSelectionne = null;
+    $userData = null;
+    $databaseError = 'La page de commande est temporairement indisponible. Vérifiez la connexion à la base de données.';
+}
 
 if (!$userData) {
-    header('Location: /pages/logout.php');
-    exit;
+    if ($databaseError === '') {
+        header('Location: /pages/logout.php');
+        exit;
+    }
+    $message = $databaseError;
+    $messageType = 'danger';
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $databaseError === '') {
     $datePrestation = trim($_POST['date_prestation'] ?? '');
     $heureLivraison = trim($_POST['heure_livraison'] ?? '');
     $lieuLivraison = trim($_POST['lieu_livraison'] ?? '');
@@ -273,4 +286,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
