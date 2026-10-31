@@ -68,7 +68,23 @@ $avis = $avisStmt->fetchAll(PDO::FETCH_ASSOC);
 $noteMoyenne = $avis
     ? array_sum(array_column($avis, 'note')) / count($avis)
     : null;
-$avisDemo = [];
+$avisDemo = [
+    [
+        'note' => 5,
+        'commentaire' => 'Une composition soignée et adaptée aux repas de fête.',
+        'prenom' => 'Sophie Martin',
+    ],
+    [
+        'note' => 4,
+        'commentaire' => 'Des plats variés et une formule facile à organiser.',
+        'prenom' => 'Thomas Bernard',
+    ],
+    [
+        'note' => 5,
+        'commentaire' => 'Un menu gourmand et une organisation simple pour recevoir nos invités.',
+        'prenom' => 'Claire Dubois',
+    ],
+];
 
 $types = [
     'entree' => 'Entrées',
@@ -164,7 +180,7 @@ foreach ($plats as $plat) {
         <h2 class="h4 mb-3">Avis clients</h2>
         <?php if (!$avis): ?>
             <p class="alert alert-info">
-                Aucun avis client validé pour le moment. Les exemples ci-dessous sont uniquement destinés à présenter le rendu de la page.
+                Exemples d'avis affichés pour présenter le rendu de la page.
             </p>
             <div class="row g-3">
                 <?php foreach ($avisDemo as $avisClient): ?>
