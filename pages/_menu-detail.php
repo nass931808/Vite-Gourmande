@@ -54,17 +54,22 @@ try {
     unset($plat);
 }
 
-$avisStmt = $pdo->prepare(
-    'SELECT a.note, a.commentaire, a.created_at, u.prenom
-     FROM avis a
-     INNER JOIN commandes c ON c.id = a.commande_id
-     INNER JOIN utilisateurs u ON u.id = a.utilisateur_id
-     WHERE c.menu_id = :menu_id AND a.statut = :statut
-     ORDER BY a.created_at DESC
-     LIMIT 10'
-);
-$avisStmt->execute(['menu_id' => $menuId, 'statut' => 'valide']);
-$avis = $avisStmt->fetchAll(PDO::FETCH_ASSOC);
+$avis = [];
+try {
+    $avisStmt = $pdo->prepare(
+        'SELECT a.note, a.commentaire, a.created_at, u.prenom
+         FROM avis a
+         INNER JOIN commandes c ON c.id = a.commande_id
+         INNER JOIN utilisateurs u ON u.id = a.utilisateur_id
+         WHERE c.menu_id = :menu_id AND a.statut = :statut
+         ORDER BY a.created_at DESC
+         LIMIT 10'
+    );
+    $avisStmt->execute(['menu_id' => $menuId, 'statut' => 'valide']);
+    $avis = $avisStmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $exception) {
+    error_log('Avis indisponibles sur le détail du menu : ' . $exception->getMessage());
+}
 $noteMoyenne = $avis
     ? array_sum(array_column($avis, 'note')) / count($avis)
     : null;
