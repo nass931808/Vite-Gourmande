@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 try {
-    $menusStmt = $pdo->query('SELECT id, nom, nb_personnes_min, prix_minimum FROM menus WHERE actif = 1 ORDER BY nom');
+    $menusStmt = $pdo->query('SELECT id, nom, nb_personnes_min, prix_minimum FROM menus WHERE actif = TRUE ORDER BY nom');
     $menus = $menusStmt->fetchAll(PDO::FETCH_ASSOC);
 
     $menuSelectionne = null;
