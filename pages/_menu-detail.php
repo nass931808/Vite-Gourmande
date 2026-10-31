@@ -16,20 +16,43 @@ if (!$menu) {
     exit('Menu introuvable.');
 }
 
-$platsStmt = $pdo->prepare(
-    'SELECT nom, type, allergenes, stock
-     FROM plats
-     WHERE menu_id = :menu_id
-     ORDER BY CASE type
-        WHEN \'entree\' THEN 1
-        WHEN \'plat\' THEN 2
-        WHEN \'dessert\' THEN 3
-        WHEN \'boisson\' THEN 4
-        ELSE 5
-     END, nom'
-);
-$platsStmt->execute(['menu_id' => $menuId]);
-$plats = $platsStmt->fetchAll(PDO::FETCH_ASSOC);
+$platsQuery = 'SELECT nom, type, allergenes, stock
+               FROM plats
+               WHERE menu_id = :menu_id
+               ORDER BY CASE type
+                  WHEN \'entree\' THEN 1
+                  WHEN \'plat\' THEN 2
+                  WHEN \'dessert\' THEN 3
+                  WHEN \'boisson\' THEN 4
+                  ELSE 5
+               END, nom';
+
+try {
+    $platsStmt = $pdo->prepare($platsQuery);
+    $platsStmt->execute(['menu_id' => $menuId]);
+    $plats = $platsStmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $exception) {
+    // Compatibilité avec une base existante avant l'ajout des colonnes détail.
+    $platsStmt = $pdo->prepare(
+        'SELECT nom, type
+         FROM plats
+         WHERE menu_id = :menu_id
+         ORDER BY CASE type
+            WHEN \'entree\' THEN 1
+            WHEN \'plat\' THEN 2
+            WHEN \'dessert\' THEN 3
+            WHEN \'boisson\' THEN 4
+            ELSE 5
+         END, nom'
+    );
+    $platsStmt->execute(['menu_id' => $menuId]);
+    $plats = $platsStmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($plats as &$plat) {
+        $plat['allergenes'] = null;
+        $plat['stock'] = null;
+    }
+    unset($plat);
+}
 
 $avisStmt = $pdo->prepare(
     'SELECT a.note, a.commentaire, a.created_at, u.prenom
@@ -118,7 +141,9 @@ foreach ($plats as $plat) {
                                 <td><?php echo htmlspecialchars($plat['nom']); ?></td>
                                 <td><?php echo htmlspecialchars($plat['allergenes'] ?: 'Aucun allergène renseigné'); ?></td>
                                 <td>
-                                    <?php if ((int) $plat['stock'] > 0): ?>
+                                    <?php if ($plat['stock'] === null): ?>
+                                        <span class="text-muted">Stock à confirmer</span>
+                                    <?php elseif ((int) $plat['stock'] > 0): ?>
                                         <span class="text-success"><?php echo (int) $plat['stock']; ?> disponible(s)</span>
                                     <?php else: ?>
                                         <span class="text-danger">Rupture de stock</span>
