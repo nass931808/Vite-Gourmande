@@ -5,6 +5,8 @@ J'ai créé Vite&Gourmande, un site web de restaurant/traiteur.
 
 Le site permet de:
 - 📋 Consulter les menus
+- ⭐ Consulter les avis clients validés
+- ⚠️ Voir les allergènes, les conditions et le stock de chaque plat
 - 🔐 Créer un compte et se connecter
 - 🛒 Passer une commande
 - 📦 Suivre une commande
@@ -44,7 +46,6 @@ Dans ce guide, j'ai expliqué simplement comment déployer l'application en loca
 - J'ai vérifié que l'accueil et les menus étaient accessibles
 - J'ai vérifié que l'inscription et la connexion fonctionnaient
 - J'ai vérifié que la commande et le suivi de commande fonctionnaient
-
 
 
 

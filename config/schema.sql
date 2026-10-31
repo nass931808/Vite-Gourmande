@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS plats (
     menu_id INT UNSIGNED NOT NULL,
     nom VARCHAR(160) NOT NULL,
     type ENUM('entree', 'plat', 'dessert', 'boisson') NOT NULL,
+    allergenes VARCHAR(255) NOT NULL DEFAULT 'Non renseignés',
+    stock INT UNSIGNED NOT NULL DEFAULT 0,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_plats_menu_id (menu_id),
     INDEX idx_plats_type (type)
@@ -116,28 +118,30 @@ ON DUPLICATE KEY UPDATE
     prix_minimum = VALUES(prix_minimum),
     actif = VALUES(actif);
 
-INSERT INTO plats (id, menu_id, nom, type)
+INSERT INTO plats (id, menu_id, nom, type, allergenes, stock)
 VALUES
-    (1,  1, 'Foie gras maison', 'entree'),
-    (2,  1, 'Veloute de chataignes', 'entree'),
-    (3,  1, 'Chapon farci aux marrons', 'plat'),
-    (4,  1, 'Gratin dauphinois', 'plat'),
-    (5,  1, 'Buche de Noel chocolat', 'dessert'),
-    (6,  2, 'Asperges sauce mousseline', 'entree'),
-    (7,  2, 'Oeuf cocotte truffe', 'entree'),
-    (8,  2, 'Gigot d agneau aux herbes', 'plat'),
-    (9,  2, 'Gratin de pommes de terre', 'plat'),
-    (10, 2, 'Charlotte aux fraises', 'dessert'),
-    (11, 3, 'Verrines de saumon', 'entree'),
-    (12, 3, 'Planches de charcuterie', 'entree'),
-    (13, 3, 'Buffet chaud au choix', 'plat'),
-    (14, 3, 'Riz pilaf et legumes', 'plat'),
-    (15, 3, 'Assortiment de desserts', 'dessert'),
-    (16, 4, 'Salade nicoise', 'entree'),
-    (17, 4, 'Soupe a l oignon gratinee', 'entree'),
-    (18, 4, 'Boeuf bourguignon', 'plat'),
-    (19, 4, 'Pommes de terre vapeur', 'plat'),
-    (20, 4, 'Tarte Tatin maison', 'dessert')
+    (1,  1, 'Foie gras maison', 'entree', 'Lait', 12),
+    (2,  1, 'Veloute de chataignes', 'entree', 'Lait', 15),
+    (3,  1, 'Chapon farci aux marrons', 'plat', 'Fruits a coque', 10),
+    (4,  1, 'Gratin dauphinois', 'plat', 'Lait', 12),
+    (5,  1, 'Buche de Noel chocolat', 'dessert', 'Lait, oeufs, gluten', 8),
+    (6,  2, 'Asperges sauce mousseline', 'entree', 'Oeufs, lait', 14),
+    (7,  2, 'Oeuf cocotte truffe', 'entree', 'Oeufs, lait', 12),
+    (8,  2, 'Gigot d agneau aux herbes', 'plat', 'Aucun', 10),
+    (9,  2, 'Gratin de pommes de terre', 'plat', 'Lait', 12),
+    (10, 2, 'Charlotte aux fraises', 'dessert', 'Gluten, oeufs, lait', 8),
+    (11, 3, 'Verrines de saumon', 'entree', 'Poisson, lait', 20),
+    (12, 3, 'Planches de charcuterie', 'entree', 'Aucun', 20),
+    (13, 3, 'Buffet chaud au choix', 'plat', 'Selon composition', 15),
+    (14, 3, 'Riz pilaf et legumes', 'plat', 'Aucun', 15),
+    (15, 3, 'Assortiment de desserts', 'dessert', 'Gluten, oeufs, lait', 15),
+    (16, 4, 'Salade nicoise', 'entree', 'Poisson, oeufs', 16),
+    (17, 4, 'Soupe a l oignon gratinee', 'entree', 'Gluten, lait', 16),
+    (18, 4, 'Boeuf bourguignon', 'plat', 'Aucun', 12),
+    (19, 4, 'Pommes de terre vapeur', 'plat', 'Aucun', 16),
+    (20, 4, 'Tarte Tatin maison', 'dessert', 'Gluten, lait', 10)
 ON DUPLICATE KEY UPDATE
     nom = VALUES(nom),
-    type = VALUES(type);
+    type = VALUES(type),
+    allergenes = VALUES(allergenes),
+    stock = VALUES(stock);
