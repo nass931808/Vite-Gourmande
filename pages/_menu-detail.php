@@ -68,6 +68,21 @@ $avis = $avisStmt->fetchAll(PDO::FETCH_ASSOC);
 $noteMoyenne = $avis
     ? array_sum(array_column($avis, 'note')) / count($avis)
     : null;
+$avisDemo = [];
+if (!$avis) {
+    $avisDemo = [
+        [
+            'note' => 5,
+            'commentaire' => 'Présentation de démonstration : une composition soignée et adaptée aux repas de fête.',
+            'prenom' => 'Client démo',
+        ],
+        [
+            'note' => 4,
+            'commentaire' => 'Présentation de démonstration : des plats variés et une formule facile à organiser.',
+            'prenom' => 'Client démo',
+        ],
+    ];
+}
 
 $types = [
     'entree' => 'Entrées',
@@ -162,7 +177,22 @@ foreach ($plats as $plat) {
     <section class="bg-white rounded shadow-sm p-4 mb-4">
         <h2 class="h4 mb-3">Avis clients</h2>
         <?php if (!$avis): ?>
-            <p class="mb-0">Les premiers avis seront affichés après validation par notre équipe.</p>
+            <p class="alert alert-info">
+                Aucun avis client validé pour le moment. Les exemples ci-dessous sont uniquement destinés à présenter le rendu de la page.
+            </p>
+            <div class="row g-3">
+                <?php foreach ($avisDemo as $avisClient): ?>
+                    <article class="col-12 col-md-6">
+                        <div class="border rounded p-3 h-100">
+                            <p class="mb-1" aria-label="Note de démonstration : <?php echo (int) $avisClient['note']; ?> sur 5">
+                                <strong><?php echo str_repeat('★', (int) $avisClient['note']); ?></strong>/5
+                            </p>
+                            <p class="mb-2"><?php echo htmlspecialchars($avisClient['commentaire']); ?></p>
+                            <small class="text-muted"><?php echo htmlspecialchars($avisClient['prenom']); ?></small>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
         <?php else: ?>
             <div class="row g-3">
                 <?php foreach ($avis as $avisClient): ?>
