@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_address'] = $user['adresse_postale'];
                 $_SESSION['user_role'] = $user['role'];
 
-                if (!isset($_GET['redirect']) || $_GET['redirect'] === '') {
+                if (!$hasRedirectTarget || $redirectTarget === '/pages/index.html') {
                     if ($user['role'] === 'administrateur') {
                         $redirectTarget = '/pages/espace-admin.php';
                     } elseif ($user['role'] === 'employe') {
@@ -144,5 +144,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 
