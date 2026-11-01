@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS avis;
 DROP TABLE IF EXISTS commande_suivis;
 DROP TABLE IF EXISTS commandes;
 DROP TABLE IF EXISTS contacts;
+DROP TABLE IF EXISTS plat_allergenes;
+DROP TABLE IF EXISTS allergenes;
 DROP TABLE IF EXISTS plats;
 DROP TABLE IF EXISTS utilisateurs;
 DROP TABLE IF EXISTS menus;
@@ -31,6 +33,20 @@ CREATE TABLE IF NOT EXISTS plats (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_plats_menu_id (menu_id),
     INDEX idx_plats_type (type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS allergenes (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(120) NOT NULL UNIQUE,
+    composition TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS plat_allergenes (
+    plat_id INT UNSIGNED NOT NULL,
+    allergene_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (plat_id, allergene_id),
+    INDEX idx_plat_allergenes_allergene (allergene_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS utilisateurs (
@@ -145,3 +161,35 @@ ON DUPLICATE KEY UPDATE
     type = VALUES(type),
     allergenes = VALUES(allergenes),
     stock = VALUES(stock);
+
+INSERT INTO allergenes (id, nom, composition)
+VALUES
+    (1, 'Gluten', 'Blé, seigle, orge, avoine et produits dérivés'),
+    (2, 'Lait', 'Lait et produits à base de lait, y compris le lactose'),
+    (3, 'Œufs', 'Œufs et produits à base d’œufs'),
+    (4, 'Fruits à coque', 'Amandes, noisettes, noix, noix de cajou et produits dérivés'),
+    (5, 'Poisson', 'Poissons et produits à base de poissons'),
+    (6, 'Céleri', 'Céleri et produits à base de céleri'),
+    (7, 'Sulfites', 'Anhydride sulfureux et sulfites à concentration réglementée')
+ON DUPLICATE KEY UPDATE
+    composition = VALUES(composition);
+
+INSERT INTO plat_allergenes (plat_id, allergene_id)
+VALUES
+    (3, 1), (3, 2), (3, 4),
+    (4, 2),
+    (5, 1), (5, 2), (5, 3),
+    (6, 2), (6, 3),
+    (7, 2), (7, 3),
+    (9, 2),
+    (10, 1), (10, 2), (10, 3),
+    (11, 2), (11, 5),
+    (12, 7),
+    (13, 1), (13, 2), (13, 3), (13, 6),
+    (15, 1), (15, 2), (15, 3),
+    (16, 3), (16, 5),
+    (17, 1), (17, 2),
+    (18, 7),
+    (20, 1), (20, 2)
+ON DUPLICATE KEY UPDATE
+    allergene_id = VALUES(allergene_id);

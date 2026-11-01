@@ -16,7 +16,7 @@ if (!$menu) {
     exit('Menu introuvable.');
 }
 
-$platsQuery = 'SELECT nom, type, allergenes, stock
+$platsQuery = 'SELECT id, nom, type, allergenes, stock
                FROM plats
                WHERE menu_id = :menu_id
                ORDER BY CASE type
@@ -31,10 +31,35 @@ try {
     $platsStmt = $pdo->prepare($platsQuery);
     $platsStmt->execute(['menu_id' => $menuId]);
     $plats = $platsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    try {
+        $allergenesStmt = $pdo->prepare(
+            'SELECT pa.plat_id, a.nom
+             FROM plat_allergenes pa
+             INNER JOIN allergenes a ON a.id = pa.allergene_id
+             INNER JOIN plats p ON p.id = pa.plat_id
+             WHERE p.menu_id = :menu_id
+             ORDER BY a.nom'
+        );
+        $allergenesStmt->execute(['menu_id' => $menuId]);
+        $allergenesParPlat = [];
+        foreach ($allergenesStmt->fetchAll(PDO::FETCH_ASSOC) as $allergene) {
+            $allergenesParPlat[(int) $allergene['plat_id']][] = $allergene['nom'];
+        }
+        foreach ($plats as &$plat) {
+            $platAllergenes = $allergenesParPlat[(int) $plat['id']] ?? [];
+            if ($platAllergenes) {
+                $plat['allergenes'] = implode(', ', $platAllergenes);
+            }
+        }
+        unset($plat);
+    } catch (PDOException $exception) {
+        error_log('Table des allergènes indisponible : ' . $exception->getMessage());
+    }
 } catch (PDOException $exception) {
     // Compatibilité avec une base existante avant l'ajout des colonnes détail.
     $platsStmt = $pdo->prepare(
-        'SELECT nom, type
+        'SELECT id, nom, type
          FROM plats
          WHERE menu_id = :menu_id
          ORDER BY CASE type
