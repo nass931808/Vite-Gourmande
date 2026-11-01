@@ -16,7 +16,7 @@ if (!$menu) {
     exit('Menu introuvable.');
 }
 
-$platsQuery = 'SELECT id, nom, type, allergenes, stock
+$platsQuery = 'SELECT id, nom, type, allergenes
                FROM plats
                WHERE menu_id = :menu_id
                ORDER BY CASE type
@@ -59,7 +59,7 @@ try {
 } catch (PDOException $exception) {
     // Compatibilité avec une base existante avant l'ajout des colonnes détail.
     $platsStmt = $pdo->prepare(
-        'SELECT id, nom, type
+        'SELECT id, nom, type, allergenes
          FROM plats
          WHERE menu_id = :menu_id
          ORDER BY CASE type
@@ -74,7 +74,6 @@ try {
     $plats = $platsStmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($plats as &$plat) {
         $plat['allergenes'] = null;
-        $plat['stock'] = null;
     }
     unset($plat);
 }
@@ -181,21 +180,12 @@ foreach ($plats as $plat) {
                 <h3 class="h5 mt-3"><?php echo $label; ?></h3>
                 <div class="table-responsive">
                     <table class="table align-middle">
-                        <thead><tr><th>Produit</th><th>Allergènes</th><th>Stock</th></tr></thead>
+                        <thead><tr><th>Produit</th><th>Allergènes</th></tr></thead>
                         <tbody>
                         <?php foreach ($platsParType[$type] as $plat): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($plat['nom']); ?></td>
                                 <td><?php echo htmlspecialchars($plat['allergenes'] ?: 'Aucun allergène renseigné'); ?></td>
-                                <td>
-                                    <?php if ($plat['stock'] === null): ?>
-                                        <span class="text-muted">Stock à confirmer</span>
-                                    <?php elseif ((int) $plat['stock'] > 0): ?>
-                                        <span class="text-success"><?php echo (int) $plat['stock']; ?> disponible(s)</span>
-                                    <?php else: ?>
-                                        <span class="text-danger">Rupture de stock</span>
-                                    <?php endif; ?>
-                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
