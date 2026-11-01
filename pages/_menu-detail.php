@@ -184,7 +184,7 @@ foreach ($plats as $plat) {
     <section class="bg-white rounded shadow-sm p-4 mb-4">
         <h2 class="h4 mb-3">Avis clients</h2>
         <p class="mb-3">Vous avez déjà commandé ce menu ? Partagez votre expérience avec nos futurs clients.</p>
-        <a href="/pages/mes-commandes.php" class="btn btn-primary mb-4">Ajouter un avis</a>
+        <a href="/pages/ajouter-avis.php" class="btn btn-primary mb-4">Ajouter un avis</a>
         <?php if (!$avis): ?>
             <p class="alert alert-info">
                 Exemples d'avis affichés pour présenter le rendu de la page.
