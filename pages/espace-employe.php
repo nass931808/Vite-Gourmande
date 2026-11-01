@@ -87,9 +87,10 @@ $avisStmt = $pdo->query(
      INNER JOIN utilisateurs u ON u.id = a.utilisateur_id
      INNER JOIN commandes c ON c.id = a.commande_id
      INNER JOIN menus m ON m.id = c.menu_id
-     WHERE a.statut = "en_attente"
+     WHERE a.statut = :statut
      ORDER BY a.created_at DESC'
 );
+$avisStmt->execute(['statut' => 'en_attente']);
 $avisEnAttente = $avisStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
