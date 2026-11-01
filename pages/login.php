@@ -5,9 +5,11 @@ require_once __DIR__ . '/../config/database.php';
 $message = '';
 $messageType = '';
 $redirectTarget = '/pages/index.html';
+$hasRedirectTarget = false;
 
 if (isset($_GET['redirect']) && is_string($_GET['redirect']) && str_starts_with($_GET['redirect'], '/pages/')) {
     $redirectTarget = $_GET['redirect'];
+    $hasRedirectTarget = true;
 }
 
 if (isset($_GET['logout']) && $_GET['logout'] === '1') {
@@ -112,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
 
-            <form method="post" action="/pages/login.php?redirect=<?php echo urlencode($redirectTarget); ?>">
+            <form method="post" action="/pages/login.php<?php echo $hasRedirectTarget ? '?redirect=' . urlencode($redirectTarget) : ''; ?>">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(getCsrfToken()); ?>">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -142,6 +144,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 
 
