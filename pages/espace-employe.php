@@ -80,7 +80,7 @@ $listStmt = $pdo->prepare($query);
 $listStmt->execute($params);
 $commandes = $listStmt->fetchAll(PDO::FETCH_ASSOC);
 
-$avisStmt = $pdo->query(
+$avisStmt = $pdo->prepare(
     'SELECT a.id, a.note, a.commentaire, a.created_at, a.statut,
             u.prenom, u.nom, c.id AS commande_id, m.nom AS menu_nom
      FROM avis a
