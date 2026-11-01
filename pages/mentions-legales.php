@@ -30,21 +30,17 @@
 <main class="container py-5" style="max-width: 900px;">
     <section class="bg-white rounded shadow-sm p-4 mb-4">
         <h1 class="h3 mb-3">Mentions légales</h1>
-        <p><strong>Nature du site :</strong> Vite&Gourmande est un projet fictif et pédagogique réalisé dans le cadre d'une formation Studi.</p>
-        <p><strong>Restaurant :</strong> Vite&Gourmande ne correspond pas à un restaurant réel et ne propose pas de service commercial.</p>
-        <p><strong>Éditeur du site :</strong> projet pédagogique « Vite&Gourmande ».</p>
-        <p><strong>Responsable de publication :</strong> réalisation étudiante dans le cadre de la formation Studi.</p>
-        <p><strong>Contact :</strong> ce site étant un projet pédagogique non commercial, aucun service client réel n'est associé à cette démonstration.</p>
-        <p><strong>Hébergement :</strong> le site peut être exécuté en local ou déployé sur une infrastructure d'hébergement pour les besoins de la démonstration.</p>
-        <p><strong>Contenus de démonstration :</strong> les menus, commandes, avis, noms et données affichés peuvent être fictifs et servent uniquement à présenter les fonctionnalités du projet.</p>
+        <p><strong>Éditeur du site:</strong> Vite&Gourmande</p>
+        <p><strong>Responsable de publication:</strong> Vite&Gourmande</p>
+        <p><strong>Contact:</strong> via le formulaire de contact du site</p>
+        <p><strong>Hébergement:</strong> Heroku</p>
     </section>
 
     <section class="bg-white rounded shadow-sm p-4">
         <h2 class="h4 mb-3">Politique de confidentialité</h2>
-        <p>Dans le cadre de la démonstration, les informations saisies (nom, prénom, email, GSM et adresse) servent uniquement à tester la création de compte, les commandes, le suivi et les avis.</p>
-        <p>Ce projet n'exploite pas ces données dans le cadre d'une activité commerciale et ne les revend pas à des tiers.</p>
-        <p>Les cookies de session sont nécessaires au fonctionnement de la connexion et sont supprimés à la fin de la session ou lors de la déconnexion.</p>
-        <p>Pour un déploiement réel, une adresse de contact, une durée de conservation et les informations légales complètes de l'éditeur devraient être ajoutées avant toute mise en production commerciale.</p>
+        <p>Nous collectons uniquement les données nécessaires au traitement des commandes et à la relation client.</p>
+        <p>Les informations saisies (nom, prénom, email, GSM, adresse) sont utilisées pour la gestion des commandes et du compte utilisateur.</p>
+        <p>Les données ne sont pas revendues à des tiers. Vous pouvez demander la correction ou la suppression de vos données via la page de contact.</p>
     </section>
 </main>
 
