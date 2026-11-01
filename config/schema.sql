@@ -155,7 +155,11 @@ VALUES
     (17, 4, 'Soupe a l oignon gratinee', 'entree', 'Gluten, lait', 16),
     (18, 4, 'Boeuf bourguignon', 'plat', 'Sulfites (vin)', 12),
     (19, 4, 'Pommes de terre vapeur', 'plat', 'Aucun', 16),
-    (20, 4, 'Tarte Tatin maison', 'dessert', 'Gluten, lait', 10)
+    (20, 4, 'Tarte Tatin maison', 'dessert', 'Gluten, lait', 10),
+    (21, 1, 'Jus de pomme artisanal', 'boisson', 'Aucun allergène majeur identifié', 20),
+    (22, 2, 'Eau minérale', 'boisson', 'Aucun allergène majeur identifié', 20),
+    (23, 3, 'Jus d orange', 'boisson', 'Aucun allergène majeur identifié', 20),
+    (24, 4, 'Eau pétillante', 'boisson', 'Aucun allergène majeur identifié', 20)
 ON DUPLICATE KEY UPDATE
     nom = VALUES(nom),
     type = VALUES(type),
