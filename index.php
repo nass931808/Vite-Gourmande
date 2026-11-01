@@ -1,3 +1,3 @@
 <?php
-header('Location: /pages/index.html', true, 301);
+header('Location: /pages/index.php', true, 302);
 exit;
