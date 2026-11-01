@@ -19,6 +19,8 @@ try {
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
   ]);
 } catch (PDOException $e) {
-  die('Erreur connexion: ' . $e->getMessage());
+  error_log('Erreur de connexion à la base de données : ' . $e->getMessage());
+  http_response_code(503);
+  die('Le service est temporairement indisponible. Merci de réessayer plus tard.');
 }
 ?>

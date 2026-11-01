@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($user && password_verify($password, $user['mot_de_passe'])) {
+                session_regenerate_id(true);
                 $_SESSION['user_id'] = (int) $user['id'];
                 $_SESSION['user_name'] = $user['nom'];
                 $_SESSION['user_firstname'] = $user['prenom'];
@@ -141,7 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 
 
 
