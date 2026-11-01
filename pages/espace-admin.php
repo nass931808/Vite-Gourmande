@@ -164,7 +164,10 @@ $employees = $employeesStmt->fetchAll();
             </div>
         <?php endif; ?>
 
-        <a class="btn btn-outline-secondary mt-3" href="/pages/index.html">Retour à l'accueil</a>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+            <a class="btn btn-primary" href="/pages/espace-employe.php">Ouvrir l'espace employé</a>
+            <a class="btn btn-outline-secondary" href="/pages/index.html">Retour à l'accueil</a>
+        </div>
     </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
