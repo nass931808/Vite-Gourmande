@@ -121,9 +121,9 @@ ON CONFLICT (id) DO UPDATE SET
 
 INSERT INTO plats (id, menu_id, nom, type, allergenes, stock)
 VALUES
-    (1, 1, 'Foie gras maison', 'entree', 'Lait', 12),
+    (1, 1, 'Foie gras maison', 'entree', 'Aucun allergène majeur identifié', 12),
     (2, 1, 'Veloute de chataignes', 'entree', 'Lait', 15),
-    (3, 1, 'Chapon farci aux marrons', 'plat', 'Fruits a coque', 10),
+    (3, 1, 'Chapon farci aux marrons', 'plat', 'Gluten, fruits à coque, lait', 10),
     (4, 1, 'Gratin dauphinois', 'plat', 'Lait', 12),
     (5, 1, 'Buche de Noel chocolat', 'dessert', 'Lait, oeufs, gluten', 8),
     (6, 2, 'Asperges sauce mousseline', 'entree', 'Oeufs, lait', 14),
@@ -132,13 +132,13 @@ VALUES
     (9, 2, 'Gratin de pommes de terre', 'plat', 'Lait', 12),
     (10, 2, 'Charlotte aux fraises', 'dessert', 'Gluten, oeufs, lait', 8),
     (11, 3, 'Verrines de saumon', 'entree', 'Poisson, lait', 20),
-    (12, 3, 'Planches de charcuterie', 'entree', 'Aucun', 20),
-    (13, 3, 'Buffet chaud au choix', 'plat', 'Selon composition', 15),
+    (12, 3, 'Planches de charcuterie', 'entree', 'Sulfites (selon charcuterie)', 20),
+    (13, 3, 'Buffet chaud au choix', 'plat', 'Selon les préparations : gluten, lait, œufs ou céleri', 15),
     (14, 3, 'Riz pilaf et legumes', 'plat', 'Aucun', 15),
     (15, 3, 'Assortiment de desserts', 'dessert', 'Gluten, oeufs, lait', 15),
     (16, 4, 'Salade nicoise', 'entree', 'Poisson, oeufs', 16),
     (17, 4, 'Soupe a l oignon gratinee', 'entree', 'Gluten, lait', 16),
-    (18, 4, 'Boeuf bourguignon', 'plat', 'Aucun', 12),
+    (18, 4, 'Boeuf bourguignon', 'plat', 'Sulfites (vin)', 12),
     (19, 4, 'Pommes de terre vapeur', 'plat', 'Aucun', 16),
     (20, 4, 'Tarte Tatin maison', 'dessert', 'Gluten, lait', 10)
 ON CONFLICT (id) DO UPDATE SET

@@ -178,7 +178,7 @@ foreach ($plats as $plat) {
                 </div>
             <?php endif; ?>
         <?php endforeach; ?>
-        <p class="small text-muted mb-0">Les allergènes sont indiqués à titre informatif. Contactez-nous en cas d’allergie ou de besoin particulier.</p>
+        <p class="small text-muted mb-0">Les allergènes indiqués correspondent aux recettes prévues et peuvent varier selon les ingrédients ou la préparation. En cas d’allergie, contactez-nous avant toute commande.</p>
     </section>
 
     <section class="bg-white rounded shadow-sm p-4 mb-4">
