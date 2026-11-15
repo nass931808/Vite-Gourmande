@@ -47,5 +47,10 @@ Dans ce guide, j'ai expliqué simplement comment déployer l'application en loca
 - J'ai vérifié que l'inscription et la connexion fonctionnaient
 - J'ai vérifié que la commande et le suivi de commande fonctionnaient
 
+## Documentation
+
+- [Charte graphique, wireframes et maquettes (PDF)](docs/Charte-graphique-wireframes-maquettes_BETTAIEB_Nassim.pdf)
+- [Documentation technique (DOCX)](docs/Documentation-technique.docx)
+- [Manuel d'utilisation (DOCX)](docs/Manuel-utilisation.docx)
 
 
